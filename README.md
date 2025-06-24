@@ -68,7 +68,9 @@ Each entry contains:
 - Email (if found)
 - Address
 - Phone Number (if found)
+
 Look up ```sample_output.txt``` on how it is displayed 
+
 # 🔔 Optional: Add Alert Sound
 To get an alert when scraping finishes:
 1. Download a .mp3 file (e.g., alarm) to your system.
