@@ -104,8 +104,8 @@ def find_email(url_email):
             for email in email_list:
                 emails.add(email)
             driver.quit()
-        except:
-            print("bad network")
+        except requests.exceptions.RequestException as e:
+            print(f"Network error: {e}")
 
         return emails
 
@@ -119,14 +119,15 @@ for address in addresses:
 
 with open('Organizations.txt', 'w',  encoding='utf-8') as f:
     for i in range(len(organization_name)):
+        org_email = find_email(organization_url[i])
         print(f'{i + 1}).\n')
         print(f'Organization Name: {organization_name[i]}')
         print(f'Organization Website: {organization_url[i]}')
-        print(f'Organization Email: {find_email(organization_url[i])}')
+        print(f'Organization Email: {org_email}')
         f.write(f'{i + 1}).\n')
         f.write(f'Organization Name: {organization_name[i]}\n')
         f.write(f'Organization Website: {organization_url[i]}\n')
-        f.write(f'Organization Email: {find_email(organization_url[i])}\n')
+        f.write(f'Organization Email: {org_email}\n')
         if adr < len(organization_address) and no < len(organization_address):
             print(f'Organization Address: {organization_address[adr]}')
             print(f'Organization Phone Number: {organization_address[no]}\n')
